@@ -105,7 +105,7 @@ void input() {
     }
 }
 
-// LOGICA: muri mortali
+// muri mortali
 void logic() {
     int prevX = x;
     int prevY = y;
@@ -129,7 +129,7 @@ void logic() {
     default: break;
     }
 
-    // 💀 MURI MORTALI
+    // MURI MORTALI
     if (x < 0 || x >= width || y < 0 || y >= height)
         gameOver = true;
 
@@ -162,7 +162,7 @@ int main() {
         draw();
         input();
         logic();
-        Sleep(80); // più fluido e veloce
+        Sleep(80);
     }
 
     system("cls");
