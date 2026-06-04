@@ -39,7 +39,8 @@ void setup() {
 
 // UI più pulita
 void draw() {
-    system("cls");
+    COORD coord = {0, 0};
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 
     // header UI
     color(11);
@@ -149,12 +150,17 @@ void logic() {
 }
 
 int main() {
-    // nasconde cursore
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Nasconde il cursore
     CONSOLE_CURSOR_INFO cursorInfo;
     GetConsoleCursorInfo(hOut, &cursorInfo);
     cursorInfo.bVisible = false;
     SetConsoleCursorInfo(hOut, &cursorInfo);
+
+    // Imposta dimensione finestra
+    SMALL_RECT windowSize = {0, 0, 79, 29};
+    SetConsoleWindowInfo(hOut, TRUE, &windowSize);
 
     setup();
 
@@ -162,14 +168,14 @@ int main() {
         draw();
         input();
         logic();
-        Sleep(80);
+        Sleep(50);
     }
 
     system("cls");
     color(12);
     cout << "\n\n******** GAME OVER ********\n";
     color(7);
-    cout << "Score finale: " << score << "\n\n";
+    cout << "Final Score: " << score << "\n\n";
 
     system("pause");
     return 0;
